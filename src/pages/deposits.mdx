@@ -1,0 +1,140 @@
+import { CodeGroup, Row, Col, Properties, Property } from "../components/mdx.jsx"
+
+export const description =
+  'On this page, we’ll dive into the deposit or placing money into a savings account to earn interest.'
+
+# Deposits
+
+Placing money into a savings account to earn interest.
+
+## List deposits {{ tag: 'GET', label: '/v1/deposits' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your deposits.
+
+    # Request
+
+    ### Optional query
+
+    <Properties>
+      <Property name="page" type="integer">
+        The page number of deposits returned.
+        - Default `1`
+      </Property>
+      <Property name="page_size" type="integer">
+        The page size number of deposits returned.
+        - Default `10`
+      </Property>
+      <Property name="due_filter" type="string">
+        The deposits due filter by "overdue" or "due soon".
+      </Property>
+      <Property name="due_date" type="string">
+        The deposits due date.
+      </Property>
+    </Properties>
+
+    # Response
+
+    <Properties>
+      <Property name="data" type="array<object>">
+        Array of deposit object
+      </Property>
+      <Property name="data._id" type="string">
+        Unique identifier for the deposit.
+      </Property>
+      <Property name="data.bilyet_number" type="string">
+        The bilyet number for the deposit.
+      </Property>
+      <Property name="data.form_number" type="string">
+        The form number for the deposit.
+      </Property>
+      <Property name="data.placement_date" type="string">
+        The placement date for the deposit.
+      </Property>
+      <Property name="data.due_date" type="string">
+        The due date for the deposit.
+      </Property>
+      <Property name="data.bank" type="string">
+        The bank for the deposit.
+      </Property>
+      <Property name="data.account" type="string">
+        The account for the deposit.
+      </Property>
+      <Property name="data.owner" type="string">
+        The owner for the deposit.
+      </Property>
+      <Property name="data.placement_amount" type="string">
+        The placement amount for the deposit.
+      </Property>
+      <Property name="data.base_date" type="number">
+        The base date for the deposit.
+      </Property>
+      <Property name="data.tenor" type="string">
+        The tenor for the deposit.
+      </Property>
+      <Property name="data.interest_rate" type="string">
+        The interest rate for the deposit.
+      </Property>
+      <Property name="data.interest_tax_rate" type="string">
+        The interest tax rate for the deposit.
+      </Property>
+      <Property name="data.interest" type="string">
+        The amount of interest for the deposit.
+      </Property>
+      <Property name="data.created_date" type="datetime">
+        Datetime of when the deposit was created.
+      </Property>
+      <Property name="data.created_by" type="string">
+        User identifier who create the deposit.
+      </Property>
+      <Property name="data.updated_date" type="datetime">
+        Datetime of when the deposit was updated.
+      </Property>
+      <Property name="data.updated_by" type="string">
+        User identifier who update the deposit.
+      </Property>
+      <Property name="pagination" type="object">
+        Object of Pagination
+      </Property>
+      <Property name="pagination.page" type="number">
+        Page number.
+      </Property>
+      <Property name="pagination.page_size" type="number">
+        Number of total document per page.
+      </Property>
+      <Property name="pagination.page_count" type="number">
+        Total page count.
+      </Property>
+      <Property name="pagination.total_document" type="number">
+        Total filtered document.
+      </Property>
+    </Properties>
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/deposits">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.get('/v1/deposits', {
+      params: {
+        page:1,
+        page_size: 10
+      }
+    })
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+    {
+      "data": [],
+      "pagination": {
+        "page": 1,
+        "page_size": 1,
+        "page_count": 1,
+        "total_document": 0
+      }
+    }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>

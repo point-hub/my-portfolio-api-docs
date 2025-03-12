@@ -198,6 +198,7 @@ export const navigation = [
   {
     title: 'Resources',
     links: [
+      { title: 'Deposits', href: '/deposits' },
       { title: 'Reports', href: '/reports' },
     ],
   },
