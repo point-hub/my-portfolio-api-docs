@@ -7,7 +7,116 @@ export const description =
 
 The portfolio reports.
 
-## Allocation Reports {{ tag: 'GET', label: '/v1/allocation-reports' }}
+## Tax Reports {{ tag: 'GET', label: '/v1/allocation-reports' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve the distribution or assignment of funds.
+
+    # Request
+
+    ### Optional query
+
+    <Properties>
+      <Property name="investment_type" type="string">
+        The type of investment.
+      </Property>
+      <Property name="date" type="string">
+        The date of investment.
+      </Property>
+      <Property name="bank" type="string">
+        The bank of investment.
+      </Property>
+      <Property name="account" type="string">
+        The account of investment.
+      </Property>
+      <Property name="owner" type="string">
+        The owner of investment.
+      </Property>
+    </Properties>
+
+    # Response
+
+    <Properties>
+      <Property name="investment_type" type="string">
+        The type of investment.
+      </Property>
+      <Property name="allocation_percentage" type="string">
+        The percentage of investment between all investment type
+      </Property>
+      <Property name="placement_value" type="string">
+        The placement value.
+      </Property>
+      <Property name="gross_interest" type="array<string>">
+        The gross interest of investment.
+      </Property>
+      <Property name="tax" type="datetime">
+        The tax interest of investment.
+      </Property>
+      <Property name="interest" type="string">
+        The interest of investment.
+      </Property>
+      <Property name="cashback" type="datetime">
+        Total cashback of investment.
+      </Property>
+      <Property name="average_percentage_interest" type="string">
+        The average percentage of interest.
+      </Property>
+    </Properties>
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/roles">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.get('/v1/roles', {
+      params: {
+        owner: "john doe",
+      }
+    })
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+    {
+      "data": [
+        {
+          "investment_type": "tabungan",
+          "allocation_percentage": "50",
+          "placement_value": 1000000,
+          "gross_interest": 100000,
+          "tax": 10000,
+          "interest": 9000,
+          "cashback": 0,
+          "average_percentage_interest": 10,
+        },
+        {
+          "investment_type": "asuransi",
+          "allocation_percentage": "30",
+          "placement_value": 1000000,
+          "gross_interest": 100000,
+          "tax": 10000,
+          "interest": 9000,
+          "cashback": 0,
+          "average_percentage_interest": 10,
+        },
+        {
+          "investment_type": "deposito",
+          "allocation_percentage": "20",
+          "placement_value": 1000000,
+          "gross_interest": 100000,
+          "tax": 10000,
+          "interest": 9000,
+          "cashback": 0,
+          "average_percentage_interest": 10,
+        },
+      ]
+    }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+## Cash Flow Reports {{ tag: 'GET', label: '/v1/cash-flow' }}
 
 <Row>
   <Col>
